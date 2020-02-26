@@ -1,13 +1,13 @@
 //static variables
 float touchStartX, touchStartY;
 
-void touchStarted() {
+void mousePressed() {
   touchStartX=mouseX;
   touchStartY=mouseY;
 }
 
 //swipe detection
-void touchEnded() {
+void mouseReleased() {
   float swipeX=mouseX-touchStartX;
   float swipeY=mouseY-touchStartY;
   boolean touched=true;
