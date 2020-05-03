@@ -10,28 +10,24 @@ void mousePressed() {
 void mouseReleased() {
   float swipeX=mouseX-touchStartX;
   float swipeY=mouseY-touchStartY;
-  boolean touched=true;
+  String inputType="TOUCH";
   if (abs(swipeX)>abs(swipeY)) {
     if (abs(swipeX)>width/10) {
-      touched=false;
       if (swipeX>0) {
-        lastInput="swipe RIGHT";
+        inputType="RIGHT";
       } else {
-        lastInput="swipe LEFT";
+        inputType="LEFT";
       }
     }
   } else {
     if (abs(swipeY)>height/6) {
-      touched=false;
       if (swipeY>0) {
-        lastInput="swipe DOWN";
+        inputType="DOWN";
       } else {
-        lastInput="swipe UP";
+        inputType="UP";
       }
     }
   }
-  if (touched) {
-    lastInput="touch";
-  }
-  println(lastInput);
+  currentScene.handleInputs(inputType,mouseX,mouseY);
+  //println(lastInput);
 }
