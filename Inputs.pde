@@ -29,5 +29,6 @@ void mouseReleased() {
     }
   }
   currentScene.handleInputs(inputType,mouseX,mouseY);
+  if(inputType.equals("TOUCH")) currentScene.handleButtonClicks(mouseX,mouseY);
   //println(lastInput);
 }
