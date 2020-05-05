@@ -3,7 +3,7 @@ abstract class Scene {
   boolean paused;
   int frame;
   Scene() {
-    frame=frameCount;
+    frame=0;
     paused=false;
     buttons=new ArrayList<Button>();
   }
@@ -13,13 +13,13 @@ abstract class Scene {
   void resumePause() {
     paused=false;
   }
-  void togglePause(){
+  void togglePause() {
     paused=!paused;
   }
 
   void handleButtonClicks(int x, int y) {
     for (Button b : buttons) {
-      if (b.gotClicked(x,y)) {
+      if (b.gotClicked(x, y)) {
         if (b.action.equals("exitApp")) {
           exit();
         } else if (b.action.equals("startInputTest")) {
@@ -30,10 +30,12 @@ abstract class Scene {
           currentScene=game.levels.get(0);
         } else if (b.action.equals("pause")) {
           currentScene.togglePause();
+        } else if (b.action.equals("nextLevel")) {
+          game.nextLevel();
         }
       }
     }
   }
-  abstract void drawFrame();
+  abstract void draw();
   abstract void handleInputs(String type, int x, int y);
 }

@@ -5,7 +5,7 @@ class Menu extends Scene {
     buttons.add(new Button(width/2-110, height/2+100, 220, 100, "TEST", "startInputTest"));
     buttons.add(new Button(width-150, 50, height/10, height/10, "X", "exitApp"));
   }
-  void drawFrame() {
+  void draw() {
     background(204);
     fill(0);
     textSize(height/10);
