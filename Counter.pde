@@ -48,8 +48,16 @@ class Counter {
       for (Beer b : beers) {
         if (c.x>=b.x) { // client colided with beer
           if (b.full && c.drinking==0 && !c.isGoingBack) {
-            c.drinking=30;
-            beers.remove(b);
+            
+            if(int(random(0,8))==2){
+              c.drinking=30;
+              b.full=false;
+              b.wait=30;
+            }
+            else {
+              beers.remove(b);
+              c.isGoingBack=true;
+            }
             break;
           }
         }
@@ -57,6 +65,10 @@ class Counter {
     }
     for (Customer c : customers) { // garbage collection
       if (c.x<0) customers.remove(c);
+      break;
+    }
+    for (Beer b : beers) {
+      if(b.x>301) beers.remove(b);
       break;
     }
   }
@@ -73,7 +85,7 @@ class Counter {
 
 
 
-  boolean checkForLose() {
+  boolean checkForLose(Player player, int pos) {
     boolean r=false;
     for (Customer c : customers) {
       if (c.checkForLose()) {
@@ -81,7 +93,7 @@ class Counter {
       }
     }
     for (Beer b : beers) {
-      if (b.checkForLose()) {
+      if (b.checkForLose(player, pos)) {
         return true;
       }
     }

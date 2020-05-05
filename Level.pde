@@ -6,7 +6,7 @@ class Level extends Scene {
   Level(boolean l1, int c1, boolean l2, int c2, boolean l3, int c3, boolean l4, int c4, String type) {
     player=new Player();
     this.type=type;
-    freezed=50;
+    freezed=30;
     counters=new ArrayList<Counter>();
     counters.add(new Counter(l1, c1));
     counters.add(new Counter(l2, c2));
@@ -30,10 +30,9 @@ class Level extends Scene {
       textSize(height/10);
       textAlign(LEFT, TOP);
       text("SCORE:"+game.score, 0, 0);
-      textAlign(CENTER, TOP);
-      text(this.type, (2*height/3), 0);
+
       textAlign(RIGHT, TOP);
-      text("TIME:"+frame/30, 4*height/3, 0);
+      text(this.type, 4*height/3, 0);
 
       pushMatrix();
       translate(0, height/6);
@@ -58,8 +57,14 @@ class Level extends Scene {
       b.draw();
     }
     this.checkForLose();
-    if (freezed>0) freezed--;
+    if(this.checkForWin()){
+      //wygrane
+      game.score+=1000;
+      game.nextLevel();
+    }
+    if (freezed>0)freezed--;
   }
+
 
   void handleInputs(String type, int x, int y) {
     if (player.busy==0) {
@@ -69,7 +74,7 @@ class Level extends Scene {
         player.increasePosition();
       } else {
         counters.get(player.position).throwBeer(type);
-        player.busy=15;
+        player.busy=5;
       }
     }
   }
@@ -82,11 +87,22 @@ class Level extends Scene {
     }
   }
   void checkForLose() {
-    for (Counter c : counters) {
-      if (c.checkForLose()) {
-        println("you fucked up");
-        this.restart();
+    for (int i = 0; i<4; i++) {
+      Counter c= counters.get(i);
+      if (c.checkForLose(player, i)) {
+        game.lives--;
+        if(game.lives==0){
+          currentScene=new GameOver();
+        }
+        else this.restart();
       }
     }
+  }
+  boolean checkForWin() {
+    boolean r=true;
+    for (Counter c : counters) {
+      if (c.customers.size()!=0 || c.beers.size()!=0) return false;
+    }
+    return r;
   }
 }

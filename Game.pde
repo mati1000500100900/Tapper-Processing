@@ -28,4 +28,5 @@ class Game {
     currentScene=levels.get(currentLevel);
     levels.get(currentLevel).restart();
   }
+  
 }

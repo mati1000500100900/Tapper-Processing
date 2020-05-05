@@ -32,3 +32,10 @@ void mouseReleased() {
   if(inputType.equals("TOUCH")) currentScene.handleButtonClicks(mouseX,mouseY);
   //println(lastInput);
 }
+
+void keyPressed(){
+  if(keyCode==UP) currentScene.handleInputs("UP",0,0);
+  else if(keyCode==DOWN) currentScene.handleInputs("DOWN",0,0);
+  else if(keyCode==LEFT) currentScene.handleInputs("LEFT",0,0);
+  else if(keyCode==RIGHT) currentScene.handleInputs("RIGHT",0,0);
+}
