@@ -3,6 +3,7 @@ class Counter {
   int customersCount;
   int randomOffset;
   ArrayList<Customer> customers;
+  ArrayList<Beer> beers;
 
   Counter(boolean l, int cc) {
     this.fromLeft=l;
@@ -12,6 +13,7 @@ class Counter {
   }
   void restart() {
     customers = new ArrayList<Customer>();
+    beers = new ArrayList<Beer>();
     for (int i=0; i<customersCount; i++) {
       customers.add(new Customer((-30*i)+randomOffset));
     }
@@ -28,16 +30,38 @@ class Counter {
     for (Customer c : customers) {
       c.draw();
     }
-    
+    for (Beer b : beers) {
+      b.draw();
+    }
+
     popMatrix();
   }
-  void update(){
+  void update() {
+
     for (Customer c : customers) {
       c.update();
     }
+    for (Beer b : beers) {
+      b.update();
+    }
+    for (Customer c : customers) {
+      for (Beer b : beers) {
+        if (c.x>=b.x) { // client colided with beer
+          if (b.full && c.drinking==0 && !c.isGoingBack) {
+            c.drinking=30;
+            beers.remove(b);
+            break;
+          }
+        }
+      }
+    }
+    for (Customer c : customers) { // garbage collection
+      if (c.x<0) customers.remove(c);
+      break;
+    }
   }
-  
-  void drawPlayer(Player p){
+
+  void drawPlayer(Player p) {
     pushMatrix();
     if (!fromLeft) {
       translate(4*height/3, 0);
@@ -47,13 +71,24 @@ class Counter {
     popMatrix();
   }
 
+
+
   boolean checkForLose() {
     boolean r=false;
     for (Customer c : customers) {
-      if (c.checkForLose()){
-        r=true;
+      if (c.checkForLose()) {
+        return true;
+      }
+    }
+    for (Beer b : beers) {
+      if (b.checkForLose()) {
+        return true;
       }
     }
     return r;
+  }
+  void throwBeer(String type) {
+    if ((fromLeft && type.equals("LEFT")) || (!fromLeft && type.equals("RIGHT")))
+      beers.add(new Beer());
   }
 }

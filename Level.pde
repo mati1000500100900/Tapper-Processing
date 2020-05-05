@@ -62,10 +62,15 @@ class Level extends Scene {
   }
 
   void handleInputs(String type, int x, int y) {
-    if (type.equals("UP")) {
-      player.decreasePosition();
-    } else if (type.equals("DOWN")) {
-      player.increasePosition();
+    if (player.busy==0) {
+      if (type.equals("UP")) {
+        player.decreasePosition();
+      } else if (type.equals("DOWN")) {
+        player.increasePosition();
+      } else {
+        counters.get(player.position).throwBeer(type);
+        player.busy=15;
+      }
     }
   }
 
