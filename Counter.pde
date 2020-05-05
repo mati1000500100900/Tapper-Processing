@@ -28,13 +28,23 @@ class Counter {
     for (Customer c : customers) {
       c.draw();
     }
+    
     popMatrix();
   }
-  
   void update(){
     for (Customer c : customers) {
       c.update();
     }
+  }
+  
+  void drawPlayer(Player p){
+    pushMatrix();
+    if (!fromLeft) {
+      translate(4*height/3, 0);
+      scale(-1, 1);
+    }
+    p.draw();
+    popMatrix();
   }
 
   boolean checkForLose() {

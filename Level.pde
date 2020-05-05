@@ -1,7 +1,10 @@
 class Level extends Scene {
   ArrayList<Counter> counters;
   String type;
+  Player player;
+
   Level(boolean l1, int c1, boolean l2, int c2, boolean l3, int c3, boolean l4, int c4, String type) {
+    player=new Player();
     this.type=type;
     freezed=50;
     counters=new ArrayList<Counter>();
@@ -34,14 +37,17 @@ class Level extends Scene {
 
       pushMatrix();
       translate(0, height/6);
-      for (Counter c : counters) {
+      for (int i=0; i<counters.size(); i++) {
+        Counter c=counters.get(i);
         translate(0, height/6);
         c.draw();
-        
+        if (i==player.position) {
+          c.drawPlayer(player);
+        }
       }
       popMatrix();
       popMatrix(); // 4:3 Stop
-      if(freezed==0){
+      if (freezed==0) {
         frame++;
         for (Counter c : counters) {
           c.update();
@@ -52,11 +58,17 @@ class Level extends Scene {
       b.draw();
     }
     this.checkForLose();
-    if(freezed>0) freezed--;
+    if (freezed>0) freezed--;
   }
 
   void handleInputs(String type, int x, int y) {
-  };
+    if (type.equals("UP")) {
+      player.decreasePosition();
+    } else if (type.equals("DOWN")) {
+      player.increasePosition();
+    }
+  }
+
   void restart() {
     frame=0;
     freezed=50;
