@@ -9,6 +9,7 @@ class Level extends Scene {
     counters.add(new Counter(l3, c3));
     counters.add(new Counter(l4, c4));
     buttons.add(new Button(width-150, 50, height/10, height/10, "X", "returnToMenu"));
+    buttons.add(new Button(width-150, 50+height/10, height/10, height/10, "II", "pause"));
     buttons.add(new Button(width-150, height-150, height/10, height/10, ">", "nextLevel"));
   }
   void draw() {
