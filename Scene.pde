@@ -1,8 +1,11 @@
 abstract class Scene {
   ArrayList<Button> buttons;
   boolean paused;
+  int freezed;
   int frame;
+  
   Scene() {
+    freezed=0;
     frame=0;
     paused=false;
     buttons=new ArrayList<Button>();
