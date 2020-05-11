@@ -38,4 +38,9 @@ void keyPressed(){
   else if(keyCode==DOWN) currentScene.handleInputs("DOWN",0,0);
   else if(keyCode==LEFT) currentScene.handleInputs("LEFT",0,0);
   else if(keyCode==RIGHT) currentScene.handleInputs("RIGHT",0,0);
+  else if(key=='`') currentScene.pause();
+}
+
+void backPressed(){
+  currentScene.pause();
 }

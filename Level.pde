@@ -12,17 +12,14 @@ class Level extends Scene {
     counters.add(new Counter(l2, c2));
     counters.add(new Counter(l3, c3));
     counters.add(new Counter(l4, c4));
-    buttons.add(new Button(width-150, 50, height/10, height/10, "X", "returnToMenu"));
-    buttons.add(new Button(width-150, 50+height/10, height/10, height/10, "II", "pause"));
+    
     buttons.add(new Button(width-150, height-150, height/10, height/10, ">", "nextLevel"));
   }
   void draw() {
     background(204);
     fill(0);
     if (paused) {
-      textSize(height/10);
-      textAlign(CENTER, CENTER);
-      text("PAUSE", width/2, height/2);
+      image(pause,(width-(height*4)/3)/2, 0, 4*height/3,height);
     } else {
       pushMatrix(); // 4:3 Start
       translate((width-(height*4)/3)/2, 0);
@@ -104,5 +101,16 @@ class Level extends Scene {
       if (c.customers.size()!=0 || c.beers.size()!=0) return false;
     }
     return r;
+  }
+  
+  void pause() {
+    paused=true;
+    buttons.add(new Button(int(width/2-height/5.6), height/2+height/25, int(height/2.8), height/15, "X", "returnToMenu"));
+    buttons.add(new Button(int(width/2-height/5.6), height/2-height/15, int(height/2.8), height/15, "II", "resumePause"));
+  }
+  void resumePause() {
+    paused=false;
+    buttons.remove(buttons.findByAction("returnToMenu"));
+    buttons.remove(buttons.findByAction("resumePause"));
   }
 }

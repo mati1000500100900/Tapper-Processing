@@ -1,6 +1,6 @@
 Scene currentScene;
 Game game;
-PImage idle[];
+PImage idle[],pause;
 
 void setup() {
   orientation(LANDSCAPE);
@@ -19,4 +19,5 @@ void loadAssets(){
   idle = new PImage[2];
   idle[0]=loadImage("Idle0.png");
   idle[1]=loadImage("Idle1.png");
+  pause=loadImage("Pause.png");
 }

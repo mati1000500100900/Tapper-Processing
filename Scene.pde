@@ -1,23 +1,20 @@
 abstract class Scene {
-  ArrayList<Button> buttons;
+  ButtonsList buttons;
   boolean paused;
   int freezed;
   int frame;
-  
+
   Scene() {
     freezed=0;
     frame=0;
     paused=false;
-    buttons=new ArrayList<Button>();
+    buttons=new ButtonsList();
   }
   void pause() {
     paused=true;
   }
   void resumePause() {
     paused=false;
-  }
-  void togglePause() {
-    paused=!paused;
   }
 
   void handleButtonClicks(int x, int y) {
@@ -32,7 +29,11 @@ abstract class Scene {
         } else if (b.action.equals("startGame")) {
           currentScene=game.levels.get(0);
         } else if (b.action.equals("pause")) {
-          currentScene.togglePause();
+          currentScene.pause();
+          break;
+        } else if (b.action.equals("resumePause")) {
+          currentScene.resumePause();
+          break;
         } else if (b.action.equals("nextLevel")) {
           game.nextLevel();
         }

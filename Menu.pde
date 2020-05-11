@@ -1,6 +1,6 @@
 class Menu extends Scene {
   Menu() {
-    buttons = new ArrayList<Button>();
+    buttons = new ButtonsList();
     buttons.add(new Button(width/2-110, height/2-100, 220, 100, "PLAY", "startGame"));
     buttons.add(new Button(width/2-110, height/2+100, 220, 100, "TEST", "startInputTest"));
     buttons.add(new Button(width-150, 50, height/10, height/10, "X", "exitApp"));
@@ -17,5 +17,9 @@ class Menu extends Scene {
   }
   void handleInputs(String type, int x, int y) {
     
+  }
+  @Override
+  void pause(){
+    exit();
   }
 }
