@@ -34,7 +34,7 @@ class Level extends Scene {
       for (int i=0; i<counters.size(); i++) {
         Counter c=counters.get(i);
         translate(0, height/4.1);
-        c.draw(scales[i]);
+        c.draw(scales[i], number);
         if (i==player.position) {
           c.drawPlayer(player, scales[i]);
         }

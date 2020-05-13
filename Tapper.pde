@@ -1,6 +1,6 @@
 Scene currentScene;
 Game game;
-PImage idle[], pause, menu, backgrounds[], doors[], counter;
+PImage idle[], pause, menu, backgrounds[], doors[], counter, clients[][];
 
 void setup() {
   orientation(LANDSCAPE);
@@ -23,10 +23,14 @@ void loadAssets() {
   pause=loadImage("Pause.png");
   menu=loadImage("Menu.png");
   counter=loadImage("Table.png");
-  backgrounds = new PImage[5];
-  doors = new PImage[5];
-  for (int i=0; i<5; i++) {
+  backgrounds = new PImage[13];
+  doors = new PImage[13];
+  clients = new PImage[13][10];
+  for (int i=0; i<9; i++) {
     backgrounds[i]=loadImage("Level"+i+"/Background.png");
     doors[i]=loadImage("Level"+i+"/Doors.png");
+    for (int j=0; j<10; j++) {
+      clients[i][j]=loadImage("Level"+i+"/Client"+j+".png");
+    }
   }
 }

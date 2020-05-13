@@ -15,10 +15,10 @@ class Counter {
     customers = new ArrayList<Customer>();
     beers = new ArrayList<Beer>();
     for (int i=0; i<customersCount; i++) {
-      customers.add(new Customer((-30*i)+randomOffset));
+      customers.add(new Customer(floor(random(10)),(-30*i)+randomOffset));
     }
   }
-  void draw(float scaleX) {
+  void draw(float scaleX, int number) {
     fill(100);
     stroke(0);
     pushMatrix();
@@ -30,7 +30,7 @@ class Counter {
     //rect(0, 0, ((height*4)/3)*0.85, height/12);
     image(counter, 0, 0, ((height*4)/3)*0.85, height/12);
     for (Customer c : customers) {
-      c.draw();
+      c.draw(number);
     }
     for (Beer b : beers) {
       b.draw();
