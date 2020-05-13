@@ -18,7 +18,7 @@ class Counter {
       customers.add(new Customer((-30*i)+randomOffset));
     }
   }
-  void draw() {
+  void draw(float scaleX) {
     fill(100);
     stroke(0);
     pushMatrix();
@@ -26,7 +26,9 @@ class Counter {
       translate(4*height/3, 0);
       scale(-1, 1);
     }
-    rect(height/20, 0, ((height*4)/3)*0.75, height/15);
+    scale(scaleX,1);
+    //rect(0, 0, ((height*4)/3)*0.85, height/12);
+    image(counter, 0, 0, ((height*4)/3)*0.85, height/12);
     for (Customer c : customers) {
       c.draw();
     }
@@ -73,13 +75,13 @@ class Counter {
     }
   }
 
-  void drawPlayer(Player p) {
+  void drawPlayer(Player p, float scaleX) {
     pushMatrix();
     if (!fromLeft) {
       translate(4*height/3, 0);
       scale(-1, 1);
     }
-    p.draw();
+    p.draw(scaleX);
     popMatrix();
   }
 

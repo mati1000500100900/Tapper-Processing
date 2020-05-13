@@ -27,6 +27,7 @@ abstract class Scene {
         } else if (b.action.equals("returnToMenu")) {
           currentScene=new Menu();
         } else if (b.action.equals("startGame")) {
+          game.newGame();
           currentScene=game.levels.get(0);
         } else if (b.action.equals("pause")) {
           currentScene.pause();

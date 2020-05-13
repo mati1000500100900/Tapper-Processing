@@ -1,19 +1,16 @@
 class Menu extends Scene {
   Menu() {
     buttons = new ButtonsList();
-    buttons.add(new Button(width/2-110, height/2-100, 220, 100, "PLAY", "startGame"));
-    buttons.add(new Button(width/2-110, height/2+100, 220, 100, "TEST", "startInputTest"));
-    buttons.add(new Button(width-150, 50, height/10, height/10, "X", "exitApp"));
+    buttons.add(new Button(int(width/2-height/5.6), height/2-height/15, int(height/2.8), height/15, "PLAY", "startGame"));
+    buttons.add(new Button(int(width/2-height/5.6), height/2+height/25, int(height/2.8), height/15, "TEST", "startInputTest"));
+    buttons.add(new Button(int(width/2-height/5.6), int(height/2+height/6.8), int(height/2.8), height/15, "X", "exitApp"));
   }
   void draw() {
-    background(204);
-    fill(0);
-    textSize(height/10);
-    textAlign(CENTER, CENTER);
-    text("MENU", width/2, height*0.2);
-    for (Button b : buttons) {
-      b.draw();
-    }
+    background(0);
+    pushMatrix(); // 4:3 Start
+    translate((width-(height*4)/3)/2, 0);
+    image(menu,0,0, 4*height/3,height);
+    popMatrix();
   }
   void handleInputs(String type, int x, int y) {
     

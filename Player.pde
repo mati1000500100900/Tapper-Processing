@@ -5,11 +5,11 @@ class Player{
     busy=0;
     position=3;
   }
-  void draw(){
+  void draw(float scaleX){
     fill(255,0,0);
     stroke(0);
     //rect(4*height/3-height/20, 0, -height/15, height/15);
-    image(idle[(frameCount/8)%2],4*height/3-height/6, -height/20, height/15, height/7.5);
+    image(idle[(frameCount/8)%2],((4*height/3)-height/5)*scaleX, -height/15, height/15, height/7.5);
     if(busy>0) busy--;
   }
   
