@@ -11,9 +11,13 @@ class Beer {
   void draw() {
     fill(255, 255, 0);
     stroke(0);
-    if (x*height/300>0 && wait==0) rect(x*height/300, 0, height/30, -height/30);
+    if (x*height/300>0 && wait==0) {
+      //rect(x*height/300, 0, height/30, -height/30);
+      if(full) image(beer,x*height/300, 0, height/30, -height/30);
+      else image(emptybeer,x*height/300, 0, height/30, -height/30);
+    }
   }
-  
+
   void update() {
     if (wait>0) {
       wait--;

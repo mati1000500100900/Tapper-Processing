@@ -38,6 +38,9 @@ class Level extends Scene {
         if (i==player.position) {
           c.drawPlayer(player, scales[i]);
         }
+        else{
+          c.drawTap(player, scales[i]);
+        }
       }
       popMatrix();
       image(doors[number], 0, 0, 4*height/3, height);
@@ -80,8 +83,8 @@ class Level extends Scene {
       } else if (type.equals("DOWN")) {
         player.increasePosition();
       } else {
-        counters.get(player.position).throwBeer(type);
-        player.busy=5;
+        player.busy=20;
+        counters.get(player.position).throwBeer(type); // delay it
       }
     }
   }

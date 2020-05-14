@@ -84,6 +84,16 @@ class Counter {
     p.draw(scaleX);
     popMatrix();
   }
+  
+  void drawTap(Player p, float scaleX){
+    pushMatrix();
+    if (!fromLeft) {
+      translate(4*height/3, 0);
+      scale(-1, 1);
+    }
+    p.drawTap(scaleX);
+    popMatrix();
+  }
 
 
 

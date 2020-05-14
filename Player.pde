@@ -1,23 +1,34 @@
-class Player{
+class Player {
   int position;
   int busy;
-  Player(){
+  Player() {
     busy=0;
     position=3;
   }
-  void draw(float scaleX){
-    fill(255,0,0);
+  void draw(float scaleX) {
+    fill(255, 0, 0);
     stroke(0);
     //rect(4*height/3-height/20, 0, -height/15, height/15);
-    image(idle[(frameCount/8)%2],((4*height/3)-height/5)*scaleX, -height/15, height/15, height/7.5);
-    if(busy>0) busy--;
+    if (busy<=0) image(idle[(frameCount/8)%2], ((4*height/3)-height/6)*scaleX, -height/6, height/8, height/4);
+    else { 
+      busy--;
+      image(filling[(busy/2)%10], ((4*height/3)-height/6)*scaleX, -height/6, height/8, height/4);
+    }
   }
-  
-  void decreasePosition(){
+
+  void drawTap(float scaleX) {
+    fill(255, 0, 0);
+    stroke(0);
+    //rect(4*height/3-height/20, 0, -height/15, height/15);
+    image(tap, ((4*height/3)-height/6)*scaleX, -height/6, height/8, height/4);
+    if (busy>0) busy--;
+  }
+
+  void decreasePosition() {
     position=(position+3)%4;
   }
-  
-  void increasePosition(){
+
+  void increasePosition() {
     position=(position+1)%4;
   }
 }
