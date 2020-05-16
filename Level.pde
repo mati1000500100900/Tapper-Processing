@@ -37,8 +37,7 @@ class Level extends Scene {
         c.draw(scales[i], number);
         if (i==player.position) {
           c.drawPlayer(player, scales[i]);
-        }
-        else{
+        } else {
           c.drawTap(player, scales[i]);
         }
       }
@@ -54,10 +53,11 @@ class Level extends Scene {
       text(this.type, 4*height/3, 0);
 
       popMatrix(); // 4:3 Stop
-      if (freezed==0) {
+      if (freezed<=0) {
         frame++;
-        for (Counter c : counters) {
-          c.update();
+        for (int i=0; i<counters.size(); i++) {
+          Counter c=counters.get(i);
+          c.update(player, i);
         }
       }
     }
@@ -77,14 +77,13 @@ class Level extends Scene {
 
 
   void handleInputs(String type, int x, int y) {
-    if (player.busy==0) {
+    if (player.busy==0 && freezed==0) {
       if (type.equals("UP")) {
         player.decreasePosition();
       } else if (type.equals("DOWN")) {
         player.increasePosition();
       } else {
-        player.busy=20;
-        counters.get(player.position).throwBeer(type); // delay it
+        counters.get(player.position).throwBeer(type, 10, player);
       }
     }
   }

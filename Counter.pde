@@ -2,10 +2,12 @@ class Counter {
   boolean fromLeft;
   int customersCount;
   int randomOffset;
+  int beerDelay;
   ArrayList<Customer> customers;
   ArrayList<Beer> beers;
 
   Counter(boolean l, int cc) {
+    this.beerDelay=0;
     this.fromLeft=l;
     this.customersCount=cc;
     this.randomOffset=int(random(0, 10));
@@ -15,7 +17,7 @@ class Counter {
     customers = new ArrayList<Customer>();
     beers = new ArrayList<Beer>();
     for (int i=0; i<customersCount; i++) {
-      customers.add(new Customer(floor(random(10)),(-30*i)+randomOffset));
+      customers.add(new Customer(floor(random(10)), (-30*i)+randomOffset));
     }
   }
   void draw(float scaleX, int number) {
@@ -26,9 +28,9 @@ class Counter {
       translate(4*height/3, 0);
       scale(-1, 1);
     }
-    scale(scaleX,1);
-    //rect(0, 0, ((height*4)/3)*0.85, height/12);
-    image(counter, 0, 0, ((height*4)/3)*0.85, height/12);
+    scale(scaleX, 1);
+    //rect(0, 0, ((height*4)/3)*0.9, height/12);
+    image(counter, 0, 0, ((height*4)/3)*0.9, height/12);
     for (Customer c : customers) {
       c.draw(number);
     }
@@ -38,7 +40,11 @@ class Counter {
 
     popMatrix();
   }
-  void update() {
+  void update(Player player, int number) {
+    if (beerDelay>0) {
+      if (beerDelay==1) beers.add(new Beer());
+      beerDelay--;
+    }
 
     for (Customer c : customers) {
       c.update();
@@ -50,13 +56,12 @@ class Counter {
       for (Beer b : beers) {
         if (c.x>=b.x) { // client colided with beer
           if (b.full && c.drinking==0 && !c.isGoingBack) {
-            
-            if(int(random(0,8))==2){
+
+            if (int(random(0, 8))==2) {
               c.drinking=30;
               b.full=false;
               b.wait=30;
-            }
-            else {
+            } else {
               beers.remove(b);
               c.isGoingBack=true;
             }
@@ -70,8 +75,10 @@ class Counter {
       break;
     }
     for (Beer b : beers) {
-      if(b.x>301) beers.remove(b);
-      break;
+      if(b.x>320 && player.position==number && !b.full || b.x>340){
+        beers.remove(b); 
+        break;
+      }
     }
   }
 
@@ -84,8 +91,8 @@ class Counter {
     p.draw(scaleX);
     popMatrix();
   }
-  
-  void drawTap(Player p, float scaleX){
+
+  void drawTap(Player p, float scaleX) {
     pushMatrix();
     if (!fromLeft) {
       translate(4*height/3, 0);
@@ -111,8 +118,10 @@ class Counter {
     }
     return r;
   }
-  void throwBeer(String type) {
-    if ((fromLeft && type.equals("LEFT")) || (!fromLeft && type.equals("RIGHT")))
-      beers.add(new Beer());
+  void throwBeer(String type, int delay, Player player) {
+    if ((fromLeft && type.equals("LEFT")) || (!fromLeft && type.equals("RIGHT"))) {
+      beerDelay=delay;
+      player.busy=delay;
+    }
   }
 }

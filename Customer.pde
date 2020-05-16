@@ -42,6 +42,6 @@ class Customer {
   }
 
   boolean checkForLose() {
-    return (this.x>296);
+    return (this.x>330);
   }
 }

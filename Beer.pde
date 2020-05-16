@@ -5,16 +5,16 @@ class Beer {
 
   Beer() {
     wait=0;
-    x=300;
+    x=340;
     full=true;
   }
   void draw() {
     fill(255, 255, 0);
     stroke(0);
     if (x*height/300>0 && wait==0) {
-      //rect(x*height/300, 0, height/30, -height/30);
-      if(full) image(beer,x*height/300, 0, height/30, -height/30);
-      else image(emptybeer,x*height/300, 0, height/30, -height/30);
+      //rect(x*height/300, height/50, height/22, -height/22);
+      if (full) image(beer, x*height/300, height/50, height/20, -height/20);
+      else image(emptybeer, x*height/300, height/50, height/20, -height/20);
     }
   }
 
@@ -28,7 +28,7 @@ class Beer {
   }
   boolean checkForLose(Player player, int pos) {
     if (this.x<0 && this.full) return true;
-    if (this.x>=300 && !this.full && player.position!=pos) return true; 
+    if (this.x>=339 && !this.full && player.position!=pos) return true; 
     return false;
   }
 }
