@@ -3,7 +3,7 @@ class Level extends Scene {
   String type;
   int number;
   Player player;
-  float scales[]={0.94, 0.96, 0.98, 1};
+  float scales[]={0.927, 0.95, 0.975, 1};
 
   Level(boolean l1, int c1, boolean l2, int c2, boolean l3, int c3, boolean l4, int c4, String type, int number) {
     player=new Player();
@@ -30,10 +30,10 @@ class Level extends Scene {
       image(backgrounds[number], 0, 0, 4*height/3, height);
 
       pushMatrix();
-      translate(0, -height/18);
+      translate(0, -height/27);
       for (int i=0; i<counters.size(); i++) {
         Counter c=counters.get(i);
-        translate(0, height/4.1);
+        translate(0, height/4.2);
         c.draw(scales[i], number);
         if (i==player.position) {
           c.drawPlayer(player, scales[i]);
@@ -44,13 +44,15 @@ class Level extends Scene {
       popMatrix();
       image(doors[number], 0, 0, 4*height/3, height);
 
+      image(scoreboard, 0, 0, 4*height/3, height);
+      for (int i=0; i<5; i++) {
+        if (game.lives-i>0) image(beer, 2*height/3+height/75+(i*height/20), height/80, height/20, height/20);
+        else image(emptybeer, 2*height/3+height/75+(i*height/20), height/80, height/20, height/20);
+      }
       fill(0);
       textSize(height/20);
       textAlign(LEFT, TOP);
-      text("SCORE:"+game.score, 0, 0);
-
-      textAlign(RIGHT, TOP);
-      text(this.type, 4*height/3, 0);
+      text(game.score,height/2.5, height/100);
 
       popMatrix(); // 4:3 Stop
       if (freezed<=0) {

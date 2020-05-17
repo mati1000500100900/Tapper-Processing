@@ -1,6 +1,6 @@
 Scene currentScene;
 Game game;
-PImage idle[], pause, menu, backgrounds[], doors[], counter, clients[][], filling[], beer, emptybeer, tap;
+PImage idle[], pause, menu, backgrounds[], doors[], counter, clients[][], filling[], beer, emptybeer, tap, scoreboard;
 
 void setup() {
   orientation(LANDSCAPE);
@@ -26,6 +26,7 @@ void loadAssets() {
   beer=loadImage("Life.png");
   emptybeer=loadImage("EmptyLife.png");
   tap=loadImage("Lever.png");
+  scoreboard=loadImage("Score.png");
 
   backgrounds = new PImage[13];
   doors = new PImage[13];
