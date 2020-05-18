@@ -71,11 +71,15 @@ class Counter {
       }
     }
     for (Customer c : customers) { // garbage collection
-      if (c.x<0) customers.remove(c);
-      break;
+      if (c.x<0 && c.isGoingBack) {
+        game.score+=game.levels.get(game.currentLevel).customerPoints;
+        customers.remove(c);
+        break;
+      }
     }
     for (Beer b : beers) {
-      if(b.x>320 && player.position==number && !b.full || b.x>340){
+      if (b.x>320 && player.position==number && !b.full || b.x>340) {
+        game.score+=100;
         beers.remove(b); 
         break;
       }

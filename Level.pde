@@ -1,14 +1,13 @@
 class Level extends Scene {
   ArrayList<Counter> counters;
-  String type;
-  int number;
+  int number, customerPoints;
   Player player;
   float scales[]={0.927, 0.95, 0.975, 1};
 
-  Level(boolean l1, int c1, boolean l2, int c2, boolean l3, int c3, boolean l4, int c4, String type, int number) {
+  Level(boolean l1, int c1, boolean l2, int c2, boolean l3, int c3, boolean l4, int c4, int customerPoints, int number) {
     player=new Player();
     this.number=number;
-    this.type=type;
+    this.customerPoints=customerPoints;
     freezed=30;
     counters=new ArrayList<Counter>();
     counters.add(new Counter(l1, c1));

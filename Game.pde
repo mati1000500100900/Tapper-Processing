@@ -17,18 +17,18 @@ class Game {
     currentLevel=0;
 
     levels = new ArrayList<Level>();
-    levels.add(new Level(true, 1, true, 1, true, 1, true, 1, "saloon", 0));
-    levels.add(new Level(true, 2, true, 2, true, 2, true, 2, "saloon", 1));
-    levels.add(new Level(false, 2, false, 3, false, 3, false, 3, "sports", 2));
-    levels.add(new Level(false, 2, false, 3, false, 3, false, 4, "sports", 3));
-    levels.add(new Level(false, 3, false, 3, false, 3, false, 4, "sports", 4));
-    levels.add(new Level(true, 2, true, 3, false, 3, false, 4, "punk", 5));
-    levels.add(new Level(false, 3, false, 3, true, 4, true, 4, "punk", 6));
-    levels.add(new Level(true, 3, true, 4, false, 4, false, 4, "punk", 7));
-    levels.add(new Level(false, 4, false, 4, true, 4, true, 4, "punk", 8));
-    levels.add(new Level(false, 4, true, 4, true, 4, false, 4, "alien", 0));
-    levels.add(new Level(true, 4, false, 4, false, 4, true, 4, "alien", 0));
-    levels.add(new Level(false, 4, true, 4, false, 4, true, 4, "alien", 0));
-    levels.add(new Level(true, 4, false, 4, true, 4, false, 4, "alien", 0));
+    levels.add(new Level(true, 1, true, 1, true, 1, true, 1, 50, 0));
+    levels.add(new Level(true, 2, true, 2, true, 2, true, 2, 50, 1));
+    levels.add(new Level(false, 2, false, 3, false, 3, false, 3, 75, 2));
+    levels.add(new Level(false, 2, false, 3, false, 3, false, 4, 75, 3));
+    levels.add(new Level(false, 3, false, 3, false, 3, false, 4, 75, 4));
+    levels.add(new Level(true, 2, true, 3, false, 3, false, 4, 100, 5));
+    levels.add(new Level(false, 3, false, 3, true, 4, true, 4, 100, 6));
+    levels.add(new Level(true, 3, true, 4, false, 4, false, 4, 100, 7));
+    levels.add(new Level(false, 4, false, 4, true, 4, true, 4, 100, 8));
+    levels.add(new Level(false, 4, true, 4, true, 4, false, 4, 150, 0));
+    levels.add(new Level(true, 4, false, 4, false, 4, true, 4, 150, 0));
+    levels.add(new Level(false, 4, true, 4, false, 4, true, 4, 150,0));
+    levels.add(new Level(true, 4, false, 4, true, 4, false, 4, 150, 0));
   }
 }
