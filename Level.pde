@@ -48,10 +48,11 @@ class Level extends Scene {
         if (game.lives-i>0) image(beer, 2*height/3+height/75+(i*height/20), height/80, height/20, height/20);
         else image(emptybeer, 2*height/3+height/75+(i*height/20), height/80, height/20, height/20);
       }
-      fill(0);
-      textSize(height/20);
-      textAlign(LEFT, TOP);
-      text(game.score,height/2.5, height/100);
+      int scoreCache=game.score;
+      for (int i=0; i<6; i++) {
+        image(numbers[scoreCache%10],2*height/3-height/75-(i*height/24), height/70, -height/22, height/22);
+        scoreCache/=10;
+      }
 
       popMatrix(); // 4:3 Stop
       if (freezed<=0) {

@@ -1,6 +1,6 @@
 Scene currentScene;
 Game game;
-PImage idle[], pause, menu, backgrounds[], doors[], counter, clients[][], filling[], beer, emptybeer, tap, scoreboard;
+PImage idle[], pause, menu, backgrounds[], doors[], counter, clients[][], filling[], numbers[], beer, emptybeer, tap, scoreboard;
 
 void setup() {
   orientation(LANDSCAPE);
@@ -27,6 +27,7 @@ void loadAssets() {
   emptybeer=loadImage("EmptyLife.png");
   tap=loadImage("Lever.png");
   scoreboard=loadImage("Score.png");
+  
 
   backgrounds = new PImage[13];
   doors = new PImage[13];
@@ -38,8 +39,11 @@ void loadAssets() {
       clients[i][j]=loadImage("Level"+i+"/Client"+j+".png");
     }
   }
+  numbers = new PImage[10];
   filling = new PImage[10];
   for (int i=0; i<10; i++) {
     filling[i]=loadImage("Filling"+i+".png");
+    numbers[i]=loadImage(i+".png");
   }
+  
 }
