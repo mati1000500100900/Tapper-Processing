@@ -63,11 +63,6 @@ class Level extends Scene {
         }
       }
     }
-    if (!paused) {
-      for (Button b : buttons) {
-        b.draw();
-      }
-    }
     this.checkForLose();
     if (this.checkForWin()) {
       //wygrane

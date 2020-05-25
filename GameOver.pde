@@ -4,11 +4,11 @@ class GameOver extends Scene {
   }
 
   void draw() {
-    background(204);
-    fill(0);
-    textSize(height/10);
-    textAlign(CENTER, CENTER);
-    text("GAME OVER", width/2, height/2);
+    background(0);
+    pushMatrix(); // 4:3 Start
+    translate((width-(height*4)/3)/2, 0);
+    image(gameover, 0, 0, 4*height/3, height);
+    popMatrix();
     if (freezed>0)freezed--;
     if (freezed==0) currentScene=new Menu();
   }

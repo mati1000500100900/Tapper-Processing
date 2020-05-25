@@ -30,7 +30,7 @@ class Counter {
     }
     scale(scaleX, 1);
     //rect(0, 0, ((height*4)/3)*0.9, height/12);
-    image(counter, 0, 0, ((height*4)/3)*0.9, height/12);
+    image(counter[number], 0, 0, ((height*4)/3)*0.9, height/12);
     for (Customer c : customers) {
       c.draw(number);
     }
