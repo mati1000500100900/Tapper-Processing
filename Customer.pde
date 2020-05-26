@@ -18,8 +18,7 @@ class Customer {
       if (isGoingBack){
         translate(height/15, 0);
         scale(-1, 1);
-      } 
-      //rect(x*height/300, 0, height/15, -height/15);
+      }
       image(clients[number][index], 0, 0, height/15, -height/15);
       popMatrix();
     }

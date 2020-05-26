@@ -12,7 +12,6 @@ class Beer {
     fill(255, 255, 0);
     stroke(0);
     if (x*height/300>0 && wait==0) {
-      //rect(x*height/300, height/50, height/22, -height/22);
       if (full) image(beer, x*height/300, height/50, height/20, -height/20);
       else image(emptybeer, x*height/300, height/50, height/20, -height/20);
     }

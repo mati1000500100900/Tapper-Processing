@@ -1,7 +1,3 @@
-import cassette.audiofiles.SoundFile;
-
-SoundFile music;
-
 Scene currentScene;
 Game game;
 PImage idle[], pause, menu, gameover, backgrounds[], doors[], counter[], clients[][], filling[], numbers[], beer, emptybeer, tap, scoreboard, tiles;
@@ -13,7 +9,6 @@ void setup() {
   currentScene = new Menu();
   game = new Game();
   loadAssets();
-  music=new SoundFile(this, "audio.mp3");
 }
 
 void draw() {
