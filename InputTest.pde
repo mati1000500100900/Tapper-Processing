@@ -6,7 +6,6 @@ class InputTest extends Scene {
   }
 
   void draw() {
-    background(204);
     textSize(100);
     fill(0);
     textSize(height/10);

@@ -18,8 +18,6 @@ class Level extends Scene {
     buttons.add(new Button(width-150, height-150, height/10, height/10, ">", "nextLevel"));
   }
   void draw() {
-    background(0);
-
     if (paused) {
       image(pause, (width-(height*4)/3)/2, 0, 4*height/3, height);
     } else {

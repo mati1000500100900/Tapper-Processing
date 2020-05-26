@@ -1,6 +1,10 @@
+import cassette.audiofiles.SoundFile;
+
+SoundFile music;
+
 Scene currentScene;
 Game game;
-PImage idle[], pause, menu, gameover, backgrounds[], doors[], counter[], clients[][], filling[], numbers[], beer, emptybeer, tap, scoreboard;
+PImage idle[], pause, menu, gameover, backgrounds[], doors[], counter[], clients[][], filling[], numbers[], beer, emptybeer, tap, scoreboard, tiles;
 
 void setup() {
   orientation(LANDSCAPE);
@@ -9,20 +13,22 @@ void setup() {
   currentScene = new Menu();
   game = new Game();
   loadAssets();
+  music=new SoundFile(this, "audio.mp3");
 }
 
 void draw() {
+  image(tiles, 0, 0, width, height);
   currentScene.draw();
 }
 
 void loadAssets() {
   idle = new PImage[2];
-
   idle[0]=loadImage("Idle0.png");
   idle[1]=loadImage("Idle1.png");
   pause=loadImage("Pause.png");
   menu=loadImage("Menu.png");
   beer=loadImage("Life.png");
+  tiles=loadImage("Blackbars-highres.png");
   gameover=loadImage("Gameover.png");
   emptybeer=loadImage("EmptyLife.png");
   tap=loadImage("Lever.png");
@@ -46,4 +52,5 @@ void loadAssets() {
     filling[i]=loadImage("Filling"+i+".png");
     numbers[i]=loadImage(i+".png");
   }
+  
 }

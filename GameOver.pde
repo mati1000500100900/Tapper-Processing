@@ -4,7 +4,6 @@ class GameOver extends Scene {
   }
 
   void draw() {
-    background(0);
     pushMatrix(); // 4:3 Start
     translate((width-(height*4)/3)/2, 0);
     image(gameover, 0, 0, 4*height/3, height);
